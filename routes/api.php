@@ -20,9 +20,11 @@ use App\Http\Controllers\SupplierProductsController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/user', [AuthController::class, 'me'])->middleware('auth:sanctum');
+
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+  //  return $request->user();
+//});
 
 Route::resource('clients', ClientController::class);
 Route::resource('order', OrderController::class);
