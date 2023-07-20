@@ -4,6 +4,7 @@
 /public/hot
 /public/storage
 /storage/*.key
+/code-challenge-spa/node_modules
 /vendor
 .env
 composer.lock

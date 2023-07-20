@@ -14,7 +14,8 @@ class ClientController extends Controller
     {
         // listar para que consuma el api 
          $datos = Client::get();
-         return response()->json(['datos'=> $datos],200); 
+         return response()->json(['datos'=> $datos],200);
+         //return $datos; 
     }
 
     /**
