@@ -18,7 +18,7 @@
        v-model="cliente.last_name"
        :counter="10"
        :rules="nameRules"
-       label="Name"
+       label="Last name"
        required
      ></v-text-field>
  

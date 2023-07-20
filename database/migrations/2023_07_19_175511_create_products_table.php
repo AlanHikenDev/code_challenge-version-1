@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('descripcion');
+            $table->string('description');
             $table->string('price'); // preguntar ya que en el diagrama marca varchar pero parece ser un campo precio
             $table->string('quantity');
             $table->softDeletes();

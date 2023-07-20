@@ -1,6 +1,6 @@
 export const state = () => ({
     name: 'order',
-    prefixUrl: '/api/clients',
+    prefixUrl: '/api/order',
     array: [],
     numPaginas: 0,
     total: 0,
@@ -36,6 +36,23 @@ export const state = () => ({
       commit('setArray', response.data)
       console.log(response)
       return response.data.datos
-    }
+    },
+    async guardar ({ commit, state }, payload) {
+        const response = await this.$axios.post(state.prefixUrl, payload )
+        console.log(response)
+        return response
+    },
+    async actualizar ({ commit, state }, payload) {
+        const response = await this.$axios.put(state.prefixUrl+'/'+payload.id, payload )
+        commit('setArray', response.data)
+        console.log(response)
+        return response
+    },
+    async eliminar ({ commit, state }, payload) {
+        const response = await this.$axios.delete(state.prefixUrl+'/'+payload.id  )
+        commit('setArray', response.data)
+        console.log(response)
+        return response
+    }, 
   }
   

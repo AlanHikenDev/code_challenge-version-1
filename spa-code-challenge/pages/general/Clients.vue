@@ -92,10 +92,8 @@
     },
     cerrarAgregar () {
         this.modalCrear = false
-        console.log('aqui')
         this.datos = [], 
         this.cargarClients()
-        console.log('actualizo')
     },
     actualizar( client)
     {   this.client = client
@@ -108,13 +106,11 @@
     eliminar(client){
         this.modalDelete = true
         this.client = client
-        //this.deleteClients(client)
-        //this.cargarClients()
     },
-    confirmDelete(){
+    async confirmDelete(){
         this.modalDelete = false
-        this.deleteClients(this.client)
-        this.cargarClients()
+        await this.deleteClients(this.client)
+        await this.cargarClients()
     },
     async cargarClients () {
       

@@ -1,6 +1,6 @@
 <template>
      <v-card>
-        <v-card-title> Guardar Cliente </v-card-title>
+        <v-card-title> Save product </v-card-title>
         <v-card-text>
     <v-form
       ref="form"
@@ -8,24 +8,31 @@
       lazy-validation
     >
       <v-text-field
-        v-model="cliente.name"
+        v-model="product.name"
         :counter="10"
         :rules="nameRules"
         label="Name"
         required
       ></v-text-field>
       <v-text-field
-        v-model="cliente.last_name"
+        v-model="product.description"
         :counter="10"
         :rules="nameRules"
-        label="Lasta name"
+        label="Description"
         required
       ></v-text-field>
   
       <v-text-field
-        v-model="cliente.email"
-        :rules="emailRules"
-        label="E-mail"
+        v-model="product.price"
+        label="price"
+        :rules="nameRules"
+        required
+      ></v-text-field>
+
+      <v-text-field
+        v-model="product.quantity"
+        label="quantity"
+        :rules="nameRules"
         required
       ></v-text-field>
   
@@ -66,10 +73,11 @@
         v => !!v || 'Name is required',
         v => (v && v.length <= 30) || 'Name must be less than 10 characters',
       ],
-      cliente: {
+      product: {
         name: null,
-        last_name : null,
-        email :null
+        description : null,
+        price : null,
+        quantity : null
       },
       email: '',
       emailRules: [
@@ -88,11 +96,11 @@
 
     methods: {
     ...mapActions({
-      guardarClients: 'client/guardar' 
+      guardarProduct: 'product/guardar' 
     }),
       async validate () {
         if (this.$refs.form.validate()){
-            await this.guardarClients(this.cliente)
+            await this.guardarProduct(this.product)
             this.$emit('guardar')
         }
 

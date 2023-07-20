@@ -77,7 +77,7 @@ class ProductController extends Controller
             'quantity' => 'required'
         ]);
 
-        $product = new Product::find($id);
+        $product = Product::find($id);
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;

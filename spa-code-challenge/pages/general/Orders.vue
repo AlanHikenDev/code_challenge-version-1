@@ -13,13 +13,10 @@
             <thead>
                 <tr>
                 <th class="text-left">
-                    Name
+                    Order number
                 </th>
                 <th class="text-left">
-                    Last name
-                </th>
-                <th class="text-left">
-                    Email
+                    Cliente
                 </th>
                 <th class="text-left">
                     Actions
@@ -54,7 +51,7 @@
   <script>
   import { mapActions } from 'vuex'
   export default {
-    name: 'IndexClients',
+    name: 'IndexOrders',
     data () {
     return {
       busqueda: null,
@@ -67,10 +64,10 @@
   methods: {
     async buscarClients () {
       
-        this.datos = await this.listarClients()
+        this.datos = await this.listarOrders()
     },
     ...mapActions({
-      listarClients: 'client/listar' 
+      listarOrders: 'order/listar' 
     }),
   }
   }
