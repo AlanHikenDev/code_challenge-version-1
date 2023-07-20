@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Order_detail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -13,7 +14,7 @@ class OrderController extends Controller
     public function index()
     {
         //
-        $datos = Order::get();
+        $datos = Order::with(['client','order_detail.product'])->get();
         return response()->json(['datos'=> $datos],200); 
     }
 
@@ -33,15 +34,27 @@ class OrderController extends Controller
         //
         $request->validate([
             'order_number' => 'required',
-            'status_id' => 'required',
-            'clients_id' => 'required'
+            'productos' => 'required',
+            'cliente_id' => 'required'
         ]);
+        
 
         $order = new Order;
         $order->order_number =$request->order_number;
-        $order->status_id =$request->status_id;
-        $order->clients_id =$request->clients_id;
+        $order->status_id = 1;
+        $order->cliente_id =$request->cliente_id;
         $order->save();
+
+        // detalle de orden 
+        //return response()->json(['creado'=>  $order],200); 
+        foreach ($request->productos as $value) {
+            $order_dt = new Order_detail;
+            $order_dt->product_id = $value;
+            $order_dt->order_id = $order->id;
+            $order_dt->price = 22.34;// precio estandar
+            $order_dt->save();
+
+        }
 
         return response()->json(['creado'=> 'Exitoso'],200); 
     }

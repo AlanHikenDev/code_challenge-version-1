@@ -109,11 +109,6 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Orders',
-          to: '/general/orders'
-        },
-        {
-          icon: 'mdi-chart-bubble',
           title: 'Products',
           to: '/general/products'
         },
@@ -121,6 +116,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Supliers',
           to: '/general/supliers'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Orders',
+          to: '/general/orders'
         }
       ],
       miniVariant: false,
