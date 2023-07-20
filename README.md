@@ -47,12 +47,33 @@ Al finalizar compartir url del repositorio por whatsapp al siguiente contacto:
    - Es una spa independiete por lo que no necesita de los mixins de laravel
    - Se usan los paquetes mas comunes de vue como vuex, router
    - Los componentes son reutilizables
-   
+
+   Para correr el proyecto 
+   # spa-code-challenge
+
+    ## Build Setup
+
+    ```bash
+    # install dependencies
+    $ npm install
+
+    # serve with hot reload at localhost:3000
+    $ npm run dev
+
+    # build for production and launch server
+    $ npm run build
+    $ npm run start
+
+    # generate static project
+    $ npm run generate
+    ```
+
    ![](Screen1.png) 
 
 3. Escogi protejer las rutas con Sanctum es uno de los paquetes mas populares de laravel 
    Brinda una facil integracion y trabajr con los tokens de sanctum es mas facil y dinamico 
-   rama :feature-auth
+   Sanctum permite trabajar con midelware 
+   - rama :feature-auth
 
 4. Escogi mysql como motor de base de datos por su integracion con laravel 
     - al ser de codigo abierto es facil entederlo y mantenerlo con el paso del tiempo 
