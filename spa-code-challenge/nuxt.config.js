@@ -4,6 +4,9 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  //
+  ssr: false,
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - spa-code-challenge',
@@ -28,6 +31,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/axios.js',
+    '~/plugins/api.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,7 +46,29 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
+
+  router: {
+		middleware: ['auth']
+	},
+
+  auth: {
+    strategies: {
+        laravelSanctum: {
+        provider: 'laravel/sanctum',
+        url: 'http://code_challenge.test/'
+        }
+    },
+    redirect: {
+        login: '/',
+        logout: '/',
+        callback: false,
+        home: false
+    },
+},
+  
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {

@@ -5,6 +5,6 @@ export default function ({ $axios }, inject) {
       
     console.log('host', api_subdominio)
     $axios.setBaseURL(api_subdominio)
-    $axios.defaults.withCredentials = false;
+    $axios.defaults.withCredentials = true;
   }
   
