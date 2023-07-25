@@ -6,7 +6,7 @@
       :clipped="clipped"
       fixed
       app
-    > {{ loggedIn }}
+    > 
       <v-list>
         <v-list-item v-if="loggedIn"
           v-for="(item, i) in items"
