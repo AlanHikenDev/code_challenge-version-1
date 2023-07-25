@@ -72,8 +72,30 @@ Al finalizar compartir url del repositorio por whatsapp al siguiente contacto:
 
 3. Escogi protejer las rutas con Sanctum es uno de los paquetes mas populares de laravel 
    Brinda una facil integracion y trabajr con los tokens de sanctum es mas facil y dinamico 
-   Sanctum permite trabajar con midelware 
-   - rama :feature-auth
+   Sanctum permite trabajar con midelware
+   Sanctum Es una solucion ligera y efectiva  
+   - rama :feature-auth 
+
+   Anotaciones para la ejecucion de la proteccion de las rutas 
+   Correrar las migraciones 
+   ```bash 
+   php artisan db:seed
+
+   ``` 
+   instalar dependencias
+   
+   ```bash
+    # install dependencies
+    $ npm install
+   ```
+   Agregar campo to SANCTUM_STATEFUL_DOMAINS en .env (cambiar en base a tu configurcion pero debe de funcionar con el puerto 3000)
+
+   ```bash
+   
+   SANCTUM_STATEFUL_DOMAINS=.localhost,.localhost:3000
+   
+   ```
+
 
 4. Escogi mysql como motor de base de datos por su integracion con laravel 
     - al ser de codigo abierto es facil entederlo y mantenerlo con el paso del tiempo 
