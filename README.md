@@ -23,3 +23,68 @@ con pruebas unitarias, implementación de patrones de diseño para reutilizar c�
 Al finalizar compartir url del repositorio por whatsapp al siguiente contacto:
 - Teléfono: 3325154811
 - Email: mario@dropstudio.mx
+
+#### Resultados :
+
+1. creacion de nodos api -> rama :coleccion-nodos-api
+   La creacion de los nodos api incluye la creacion de los modelos, las migraciones, un seeder para un usuario y las acciones crud de cada modelo 
+   Aunque no era necesario crear el crud de todos los modelos se agregaron  
+   # Cosas a mejorar :
+    - Los controladores no estan validados por una clase request especifica para cada modelo 
+    - Los modelos no tiene proteccion 
+    - Se agregaron los campos de softdelete pero la eliminacion se hace de con el metodo delete falta remplazar 
+    - verificar integridad de las relaciones (tambien se resuelve con los softdeletes)
+   # Puntos fuertes 
+    - Cumple con los requisitos del desafio
+    - Las migraciones aseguran las relaciones de la base de datos
+    - Los modelos incluyen las relaciones del diagrama
+
+     ![](Screen0.png)  
+
+2. La aplicion spa esta contruida con nuxtjs esta en la carpeta spa-code-challenge vuetify
+   rama :feature-creacion-spa
+   # Puntos fuertes : 
+   - Es una spa independiete por lo que no necesita de los mixins de laravel
+   - Se usan los paquetes mas comunes de vue como vuex, router
+   - Los componentes son reutilizables
+
+   Para correr el proyecto 
+   # spa-code-challenge
+
+    ## Build Setup
+
+    ```bash
+    # install dependencies
+    $ npm install
+
+    # serve with hot reload at localhost:3000
+    $ npm run dev
+
+    # build for production and launch server
+    $ npm run build
+    $ npm run start
+
+    # generate static project
+    $ npm run generate
+    ```
+
+   ![](Screen1.png) 
+
+3. Escogi protejer las rutas con Sanctum es uno de los paquetes mas populares de laravel 
+   Brinda una facil integracion y trabajr con los tokens de sanctum es mas facil y dinamico 
+   Sanctum permite trabajar con midelware 
+   - rama :feature-auth
+
+4. Escogi mysql como motor de base de datos por su integracion con laravel 
+    - al ser de codigo abierto es facil entederlo y mantenerlo con el paso del tiempo 
+    - Tiene un alto rendimiento y escalabilidad
+    - Mysql admite una diversidad de motores como innodb o myIsam
+
+5. En mi fork de este proyecto 
+   maneje cada punto en una rama diferente al finalizar cada tarea las mezclaba en main la rama principal
+   Por lo general lo recomendable es realizar una solicitud pull request para mezclar las ramas 
+   pero para fines de este ejercicio solo mezcle las ramas   
+
+#### CODE CHALLENGE
+
+Gracias por su atencion !! 
