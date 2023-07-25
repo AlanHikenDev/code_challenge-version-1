@@ -4,12 +4,13 @@
     <v-col cols="10" sm="8" md="4" lg="4">
       <div></div>
       <v-card class="pa-3" outlined elevation="0">
-        <div class="text-center">Carnes Cruvi </div>
+        <div class="text-center">Code challenge </div>
         <v-card-text>
           <v-text-field 
             prepend-icon="mdi-account"
-            label="Usuario"
-            v-model="username"
+            label="Email"
+            :rules="emailRules"
+            v-model="email"
           ></v-text-field>
           <v-text-field 
             prepend-icon="mdi-lock"
@@ -31,12 +32,16 @@
 
 <script>
 export default {
-  layout: 'login',
   data () {
     return {
       password: null,
-      username: null,
-      show2: false
+      email: null,
+      show2: false,
+      emailRules: [
+            v => !!v || 'E-mail is required',
+            v => /.+@.+\..+/.test(v) || 'E-mail must be valid', //regex para correo valido
+        ],
+        
     }
   },
   methods: {
@@ -47,9 +52,10 @@ export default {
 				},
 				withCredentials: true,
 			}).then((response1) => { 
+        
 				this.$auth.loginWith('local', {
 					data: {
-						username: this.username,
+						email: this.email,
 						password: this.password,
 					},
 				}).then((response) => {

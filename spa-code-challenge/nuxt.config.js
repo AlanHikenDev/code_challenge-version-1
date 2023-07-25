@@ -47,7 +47,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
+    '@nuxtjs/auth-next'
   ],
 
   router: {
@@ -55,20 +55,42 @@ export default {
 	},
 
   auth: {
-    strategies: {
-        laravelSanctum: {
-        provider: 'laravel/sanctum',
-        url: 'http://code_challenge.test/'
-        }
-    },
-    redirect: {
-        login: '/',
-        logout: '/',
-        callback: false,
-        home: false
-    },
-},
-  
+    plugins: [
+      { src: '~/plugins/axios', ssr: false },
+      { src: '~/plugins/auth.js', ssr: false }
+    ],
+		redirect: {
+			login: '/login',
+      logout: '/login',
+			home: '/',
+			callback: false, // not used here in our case
+		},
+		strategies: {
+			local: {
+				endpoints: {
+					login: { url: '/api/login', method: 'post' },
+					logout: { url: '/api/logout', method: 'get' },
+					user: { url: '/api/auth/user', method: 'get', propertyName: 'user' }
+				},
+				token: {
+					property: 'token',
+					global: true,
+					required: true,
+					type: 'Bearer'
+				},
+				refreshToken: {
+					property: 'refresh_token',
+					data: 'refresh_token',
+					maxAge: 60 * 60 * 24 * 30
+				},
+				user: {
+					property: 'user',
+					autoFetch: true
+				},
+				autoLogout:true,
+			}
+		},
+	},
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -91,5 +113,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    
   }
 }

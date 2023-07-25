@@ -9,14 +9,14 @@
     >
       <v-text-field
         v-model="cliente.name"
-        :counter="10"
+        
         :rules="nameRules"
         label="Name"
         required
       ></v-text-field>
       <v-text-field
         v-model="cliente.last_name"
-        :counter="10"
+        
         :rules="nameRules"
         label="Lasta name"
         required

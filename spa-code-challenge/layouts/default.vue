@@ -6,9 +6,9 @@
       :clipped="clipped"
       fixed
       app
-    >
+    > {{ loggedIn }}
       <v-list>
-        <v-list-item
+        <v-list-item v-if="loggedIn"
           v-for="(item, i) in items"
           :key="i"
           :to="item.to"
@@ -22,6 +22,48 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
+        
+        <v-list-item
+        v-if="!loggedIn"
+          to="/login"
+          router
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>mdi-lock</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title >Login </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item
+        v-if="!loggedIn"
+        to="/register"
+          router
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>mdi-lock</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title >Register </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item v-if="loggedIn"
+          @click="cerrarSesion"
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>mdi-lock</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title >Cerrar sesión</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
@@ -128,6 +170,19 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js'
     }
+  },
+  mounted() {
+    
+  },
+  computed: {
+      loggedIn () {
+        return this.$auth.loggedIn
+      },
+  },
+  methods: {
+    cerrarSesion () {
+      this.$auth.logout().then(() => {})
+    },
   }
 }
 </script>
