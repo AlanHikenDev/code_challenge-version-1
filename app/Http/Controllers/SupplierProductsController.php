@@ -32,7 +32,7 @@ class SupplierProductsController extends Controller
     {
         //
         $request->validate([
-            'product_id' => 'required'
+            'product_id' => 'required',
             'supplier_id' => 'required'
         ]);
 

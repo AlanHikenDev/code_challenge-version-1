@@ -14,10 +14,10 @@ class Login extends Controller
     {
 			//return $request->all();
         $request->validate([
-            'username' => ['required'],
+            'email' => ['required'],
             'password' => ['required']
         ]);
-        if (Auth::attempt($request->only('username', 'password'))) {
+        if (Auth::attempt($request->only('email', 'password'))) {
 					$user = Auth::user();
 					if(!$user->token) { // si no tiene token
 						$token =  Auth::user()->createToken('t'.$user->id);
@@ -37,35 +37,7 @@ class Login extends Controller
          ];
     }
     
-	public function login_admin(Request $request)
-    {
-			//return $request->all();
-        $request->validate([
-            'username' => ['required'],
-            'password' => ['required']
-        ]);
-        $user = User::where('username', $request->username)->first();
-        
-        if( $user && $user->password == md5($request->password) ) {
-          Auth::login($user);
-					if(!$user->token) { // si no tiene token
-						$token =  Auth::user()->createToken('t'.$user->id);
-						$user->token =  $token->plainTextToken;
-						$user->save();
-					}
-          
-          return [
-            'token' => $user->token,
-            'user' => Auth::user(),
-            'error' => false,
-          ];
-        }
-        return [
-           'message' => 'Credenciales Erroneas',
-           'error' => true,
-         ];
-    }
-
+	
     public function logout() {
       $user = Auth::user();
       if (!empty($user)) {
@@ -81,14 +53,14 @@ class Login extends Controller
 
     public function register(Request $request) {
       $data = $request->all();
-      $user = User::where('username', '=', $data['username'])->first();
+      $user = User::where('email', '=', $data['email'])->first();
         if ($user === null) {
         $data['password'] = Hash::make($data['password']);
         $query = new User();
 			  $query->create($data);
         return "ok";
         }else{
-          return "correo";
+          return "correo perdido";
         }
     }
 }
